@@ -14,7 +14,37 @@ body {
     }
 }
 
+a {
+    text-decoration: none;
+}
+
 .main-container {
     width: 80rem;
     margin: 0 auto;
+    padding: 4rem 0;
+}
+
+.app-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    color: green;
+
+    svg {
+        margin-right: 1.5rem;
+        font-size: 3rem;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 3.5rem;
+    }
+}
+
+.info-message {
+    margin: 0;
+    color: #323232;
+    font-size: 2rem;
+    font-style: italic;
 }

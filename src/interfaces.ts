@@ -9,3 +9,8 @@ export interface IRecipeInformation extends IRecipe {
     readyInMinutes: number;
     servings: number;
 }
+
+export interface IFavorite {
+    name: string;
+    preparationTime: number;
+}

@@ -2,14 +2,20 @@ import React, { useState } from 'react';
 import Search from '../../Components/Search';
 import axios from 'axios';
 import { API_ENDPOINT, API_KEY } from '../../config';
-import { IRecipe } from '../../interfaces';
+import { IFavorite, IRecipe } from '../../interfaces';
 import RecipeList from '../../Components/RecipeList';
 import './style.scss';
 import Loading from '../../Components/Loading';
 
 const initialMessage = 'Start typing to search through the recipes!';
 
-function HomePage() {
+interface Props {
+    favorites: IFavorite[];
+    addFavorite: (item: IFavorite) => void;
+    removeFavorite: (name: string) => void;
+}
+
+function HomePage({ favorites, addFavorite, removeFavorite }: Props) {
     const [searchValue, setSearchValue] = useState<string>('');
     const [recipes, setRecipes] = useState<IRecipe[]>([]);
     const [message, setMessage] = useState<string>(initialMessage);
@@ -46,12 +52,13 @@ function HomePage() {
 
     return (
         <div className="home-page">
+            <button onClick={() => addFavorite({ name: 'Test', preparationTime: 30 })}>ADD TO FAVORITE</button>
             <Search
                 value={searchValue}
                 onChange={onSearchChange}
             />
             {message ?
-                <p className="recipes-message">{message}</p>
+                <p className="info-message">{message}</p>
             :
                 <RecipeList recipes={recipes}/>
             }
