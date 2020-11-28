@@ -8,9 +8,10 @@ import './style.scss';
 interface Props {
     data: IFavorite;
     removeFavorite: (id: number) => void;
+    isFavorite?: boolean;
 }
 
-function FavoriteItem({ data, removeFavorite }: Props) {
+function FavoriteItem({ data, isFavorite = true, removeFavorite }: Props) {
     const { id, name, preparationTime } = data;
 
     const onFavoriteClick = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
@@ -19,7 +20,7 @@ function FavoriteItem({ data, removeFavorite }: Props) {
     }
 
     return (
-        <Link to={`/recipe/${id}`} className="favorite-item">
+        <Link to={`/recipe/${id}`} className="favorite-item with-box-shadow with-hover-scale">
             <div className="recipe-data">
                 <p>{name}</p>
                 <div className="preparation-time">
@@ -27,7 +28,9 @@ function FavoriteItem({ data, removeFavorite }: Props) {
                     <span>{`${preparationTime} minutes`}</span>
                 </div>
             </div>
-            <AiFillStar className="favorite-icon" onClick={onFavoriteClick}/>
+            {isFavorite &&
+                <AiFillStar className="favorite-icon" onClick={onFavoriteClick}/>
+            }
         </Link>
     );
 }

@@ -8,7 +8,7 @@ interface Props {
 
 function Search({ value, onChange }: Props) {
     return (
-        <div className="search-input">
+        <div className="search-input with-box-shadow">
             <input
                 type="text"
                 placeholder="Search..."

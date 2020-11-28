@@ -48,3 +48,15 @@ a {
     font-size: 2rem;
     font-style: italic;
 }
+
+.with-box-shadow {
+    box-shadow: 3px 3px 5px #C8C8C8;
+}
+
+.with-hover-scale {
+    transition: transform 0.5s ease-in-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}

@@ -1,5 +1,13 @@
 .similar-recipes {
-    width: 35%;
+    width: 33%;
     height: 200px;
-    margin-left: 3rem;
+    margin-left: 4rem;
+
+    .similar-recipes-container {
+        h3 {
+            margin: 0;
+            color: grey;
+            font-size: 2rem;
+        }
+    }
 }

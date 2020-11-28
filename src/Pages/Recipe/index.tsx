@@ -28,6 +28,24 @@ const mockRecipeInformation: IRecipeInformation = {
     title: 'Pasta with Tuna'
 }
 
+const mockSimilarRecipes: IFavorite[] = [
+    {
+        id: 1,
+        name: 'Pasta with salsa',
+        preparationTime: 10
+    },
+    {
+        id: 2,
+        name: 'Pasta with chicken',
+        preparationTime: 25
+    },
+    {
+        id: 3,
+        name: 'Pasta with zucchini',
+        preparationTime: 30
+    }
+]
+
 function RecipePage({ favorites, match, addFavorite, removeFavorite }: Props) {
     const [recipeInformation, setRecipeInformation] = useState<IRecipeInformation | null>(mockRecipeInformation);
     const [recipeInformationMessage, setRecipeInformationMessage] = useState<string>('');
@@ -79,8 +97,6 @@ function RecipePage({ favorites, match, addFavorite, removeFavorite }: Props) {
         </div>
     );
 
-    console.log(recipeInformation);
-
     return (
         <div className="recipe-page">
             {recipeInformation ? 
@@ -100,8 +116,10 @@ function RecipePage({ favorites, match, addFavorite, removeFavorite }: Props) {
                         <p>{recipeInformation.instructions}</p>
                     </div>
                     <SimilarRecipes
-                        data={[]}
+                        data={mockSimilarRecipes}
+                        favorites={favorites}
                         message={similarRecipesMessage}
+                        removeFavorite={removeFavorite}
                     />
                 </div>
             : (recipeInformationMessage && similarRecipesMessage) ?

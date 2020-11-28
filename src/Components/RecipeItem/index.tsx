@@ -19,7 +19,7 @@ function RecipeItem({ data, isFavorite, removeFavorite }: Props) {
     }
 
     return (
-        <Link to={`/recipe/${id}`} className="recipe-item">
+        <Link to={`/recipe/${id}`} className="recipe-item with-box-shadow with-hover-scale">
             <img className="recipe-img" src={image} alt={title}/>
             <div className="recipe-title">
                 <span>{title}</span>
