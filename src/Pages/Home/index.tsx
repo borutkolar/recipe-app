@@ -6,6 +6,8 @@ import { IFavorite, IRecipe } from '../../interfaces';
 import RecipeList from '../../Components/RecipeList';
 import './style.scss';
 import Loading from '../../Components/Loading';
+import { Link } from 'react-router-dom';
+import { AiFillStar } from 'react-icons/ai';
 
 const initialMessage = 'Start typing to search through the recipes!';
 
@@ -51,6 +53,12 @@ function HomePage({ favorites, removeFavorite }: Props) {
 
     return (
         <div className="home-page">
+            <Link to="/favorites" className="favorites-title">
+                <div>
+                    <AiFillStar/>
+                    <span>Favorites</span>
+                </div>
+            </Link>
             <Search
                 value={searchValue}
                 onChange={onSearchChange}

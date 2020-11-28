@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import HomePage from './Pages/Home';
 import RecipePage from './Pages/Recipe';
 import { IFavorite } from './interfaces';
 import FavoritesPage from './Pages/Favorites';
-import { faUtensils } from '@fortawesome/free-solid-svg-icons'
+import { GiForkKnifeSpoon } from 'react-icons/gi'
 import './App.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const localStorageKey = 'favorites';
 
@@ -36,7 +35,7 @@ function App() {
     <div className="main-container">
       <BrowserRouter>
         <Link to="/" className="app-title">
-          <FontAwesomeIcon icon={faUtensils}/>
+          <GiForkKnifeSpoon/>
           <h1>RECIPE APP</h1>
         </Link>
         <Switch>

@@ -1,9 +1,8 @@
 import React from 'react';
 import { IRecipe } from '../../interfaces';
 import { Link } from 'react-router-dom';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { AiFillStar } from 'react-icons/ai'
 import './style.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
     data: IRecipe;
@@ -25,7 +24,7 @@ function RecipeItem({ data, isFavorite, removeFavorite }: Props) {
             <div className="recipe-title">
                 <span>{title}</span>
                 {isFavorite &&
-                    <FontAwesomeIcon icon={faStar} onClick={onFavoriteClick}/>
+                    <AiFillStar onClick={onFavoriteClick}/>
                 }
             </div>
         </Link>

@@ -14,13 +14,14 @@
         h1 {
             margin: 0;
             color: black;
+            margin-bottom: 1.5rem;
             font-size: 2.5rem;
         }
 
         .favorite-text {
             display: inline-flex;
             align-items: center;
-            margin-top: 1.6rem;
+            margin-bottom: 1.5rem;
             font-size: 1.6rem;
             cursor: pointer;
 
@@ -36,12 +37,25 @@
                 margin-right: 0.5rem;
             }
         }
-    }
 
-    .similar-recipes {
-        width: 35%;
-        height: 200px;
-        margin-left: 3rem;
-        background: grey;
+        .icon-text-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: black;
+            
+            span {
+                font-size: 1.8rem;
+            }
+
+            svg {
+                margin-right: 0.5rem;
+                font-size: 2rem;
+            }
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
     }
 }

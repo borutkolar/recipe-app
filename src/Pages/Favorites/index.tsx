@@ -1,24 +1,20 @@
 import React from 'react';
 import { IFavorite } from '../../interfaces';
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FavoritesList from '../../Components/FavoritesList';
 
 interface Props {
     data: IFavorite[];
     removeFavorite: (id: number) => void;
 }
 
-function FavoritesPage({ data }: Props) {
+function FavoritesPage({ data, removeFavorite }: Props) {
     return (
         <div className="favorites-page">
             {data.length ?
-                data.map((item, index) => (
-                    <div key={index}>
-                        <span>{item.name}</span>
-                        <span>{item.preparationTime}</span>
-                        <FontAwesomeIcon icon={faStar}/>
-                    </div>
-                ))
+                <FavoritesList
+                    data={data}
+                    removeFavorite={removeFavorite}
+                />
             :
                 <p className="info-message">No recipe found in your favorites list.</p>
             }
