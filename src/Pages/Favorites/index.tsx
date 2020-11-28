@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
     data: IFavorite[];
-    addFavorite: (item: IFavorite) => void;
-    removeFavorite: (name: string) => void;
+    removeFavorite: (id: number) => void;
 }
 
 function FavoritesPage({ data }: Props) {

@@ -17,10 +17,21 @@
     }
 
     .recipe-title {
-        margin: 1rem 0 0;
-        color: black;
-        font-size: 1.5rem;
-        font-weight: 700;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1rem;
+        padding: 0 1rem;
+
+        span {
+            color: black;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        svg {
+            color: goldenrod;
+            font-size: 1.5rem;
+        }
     }
 }

@@ -6,11 +6,13 @@ export interface IRecipe {
 }
 
 export interface IRecipeInformation extends IRecipe {
+    instructions: string;
     readyInMinutes: number;
     servings: number;
 }
 
 export interface IFavorite {
+    id: number;
     name: string;
     preparationTime: number;
 }

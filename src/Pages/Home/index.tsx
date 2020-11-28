@@ -11,11 +11,10 @@ const initialMessage = 'Start typing to search through the recipes!';
 
 interface Props {
     favorites: IFavorite[];
-    addFavorite: (item: IFavorite) => void;
-    removeFavorite: (name: string) => void;
+    removeFavorite: (id: number) => void;
 }
 
-function HomePage({ favorites, addFavorite, removeFavorite }: Props) {
+function HomePage({ favorites, removeFavorite }: Props) {
     const [searchValue, setSearchValue] = useState<string>('');
     const [recipes, setRecipes] = useState<IRecipe[]>([]);
     const [message, setMessage] = useState<string>(initialMessage);
@@ -52,7 +51,6 @@ function HomePage({ favorites, addFavorite, removeFavorite }: Props) {
 
     return (
         <div className="home-page">
-            <button onClick={() => addFavorite({ name: 'Test', preparationTime: 30 })}>ADD TO FAVORITE</button>
             <Search
                 value={searchValue}
                 onChange={onSearchChange}
@@ -60,7 +58,11 @@ function HomePage({ favorites, addFavorite, removeFavorite }: Props) {
             {message ?
                 <p className="info-message">{message}</p>
             :
-                <RecipeList recipes={recipes}/>
+                <RecipeList
+                    favorites={favorites}
+                    recipes={recipes}
+                    removeFavorite={removeFavorite}
+                />
             }
             {isLoading && <Loading/>}
         </div> 

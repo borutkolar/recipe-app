@@ -8,7 +8,9 @@ import { faUtensils } from '@fortawesome/free-solid-svg-icons'
 import './App.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const localStorageFavorites = localStorage.getItem('favorites');
+const localStorageKey = 'favorites';
+
+const localStorageFavorites = localStorage.getItem(localStorageKey);
 const initialFavoritesState = (localStorageFavorites && JSON.parse(localStorageFavorites)) || [];
 
 function App() {
@@ -17,15 +19,15 @@ function App() {
   const addFavorite = (item: IFavorite) => {
     setFavorites(currentValue => {
       const newFavorites = [...currentValue, item];
-      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+      setLocalStorageFavorites(newFavorites);
       return newFavorites;
     })
   }
 
-  const removeFavorite = (name: string) => {
+  const removeFavorite = (id: number) => {
     setFavorites(currentValue => {
-      const newFavorites = currentValue.filter(c => c.name !== name);
-      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+      const newFavorites = currentValue.filter(c => c.id !== id);
+      setLocalStorageFavorites(newFavorites);
       return newFavorites;
     })
   }
@@ -41,17 +43,19 @@ function App() {
           <Route path="/" exact>
             <HomePage
               favorites={favorites}
-              addFavorite={addFavorite}
               removeFavorite={removeFavorite}
             />
           </Route>
           <Route path="/recipe/:id">
-            <RecipePage />
+            <RecipePage
+              favorites={favorites}
+              addFavorite={addFavorite}
+              removeFavorite={removeFavorite}
+            />
           </Route>
           <Route path="/favorites">
             <FavoritesPage
               data={favorites}
-              addFavorite={addFavorite}
               removeFavorite={removeFavorite}
             />
           </Route>
@@ -62,3 +66,7 @@ function App() {
 }
 
 export default App;
+
+const setLocalStorageFavorites = (data: IFavorite[]) => {
+  localStorage.setItem(localStorageKey, JSON.stringify(data));
+}

@@ -1,0 +1,47 @@
+.recipe-information-content {
+    display: flex;
+    align-items: flex-start;
+
+    .main-wrapper {
+        flex: 12 1;
+
+        .recipe-img {
+            display: block;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            margin: 0;
+            color: black;
+            font-size: 2.5rem;
+        }
+
+        .favorite-text {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 1.6rem;
+            font-size: 1.6rem;
+            cursor: pointer;
+
+            &.is-favorite {
+                color: goldenrod;
+            }
+
+            &.not-favorite {
+                color: grey;
+            }
+
+            svg {
+                margin-right: 0.5rem;
+            }
+        }
+    }
+
+    .similar-recipes {
+        width: 35%;
+        height: 200px;
+        margin-left: 3rem;
+        background: grey;
+    }
+}
