@@ -1,6 +1,12 @@
+@import '../../Styles/mixins.scss';
+
 .favorites-list {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
+
+    @include tablet {
+        width: 100%;
+    }
 
     h1 {
         margin: 0;

@@ -19,7 +19,6 @@ interface Props extends RouteComponentProps<{ id: string }> {
 const mockRecipeInformation: IRecipeInformation = {
     id: 123,
     image: 'https://iheartumami.com/wp-content/uploads/2020/04/Paleo-Tuna-Pasta-I-Heart-Umami-2.jpg',
-    imageType: '',
     instructions: `First, boil a big pot of water and cook the spaghetti, following the package instructions. If going low carb, see the next section below for an alternative method.
     In the meantime, lightly mash the canned tuna and combine with all the other ingredients in a large heat-proof bowl. Set the bowl on the stovetop next to the pasta boiler pot. This will warm up the tuna and the spices in the bowl gently and the tuna stays moist.
     Add the spaghetti into the tuna bowl. Toss and add the freshly chopped herbs. Season with salt and pepper to taste.`,

@@ -1,5 +1,11 @@
+@import '../../Styles/mixins.scss';
+
 .recipe-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
+    grid-gap: 3rem;
+
+    @include mobile {
+        grid-template-columns: repeat(1, 1fr);
+    }   
 }

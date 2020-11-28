@@ -18,19 +18,21 @@ function SimilarRecipes({ data, favorites, message, removeFavorite }: Props) {
             {data.length ?
                 <div className="similar-recipes-container">
                     <h3>Similar recipes</h3>
-                    {data.map((item, index) => {
-                        const favoriteFound = favorites.find(f => f.id === item.id);
-                        const isFavorite = Boolean(favoriteFound);
-                        
-                        return (
-                            <FavoriteItem
-                                key={index}
-                                data={item}
-                                isFavorite={isFavorite}
-                                removeFavorite={removeFavorite}
-                            />
-                        )
-                    })}
+                    <div className="similar-recipes-list">
+                        {data.map((item, index) => {
+                            const favoriteFound = favorites.find(f => f.id === item.id);
+                            const isFavorite = Boolean(favoriteFound);
+                            
+                            return (
+                                <FavoriteItem
+                                    key={index}
+                                    data={item}
+                                    isFavorite={isFavorite}
+                                    removeFavorite={removeFavorite}
+                                />
+                            )
+                        })}
+                    </div>
                 </div>
             :
                 <p className="info-message">{infoMessage}</p>

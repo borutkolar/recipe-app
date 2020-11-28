@@ -1,6 +1,12 @@
+@import '../../Styles/mixins.scss';
+
 .recipe-information-content {
     display: flex;
     align-items: flex-start;
+
+    @include tablet {
+        flex-direction: column;
+    }
 
     .main-wrapper {
         flex: 12 1;
@@ -9,6 +15,13 @@
             display: block;
             width: 100%;
             margin-bottom: 2rem;
+
+            @include tablet {
+                width: auto;
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
 
         h1 {
