@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Search from '../../Components/Search';
-import axios from 'axios';
+import axios, { CancelTokenSource } from 'axios';
 import { API_ENDPOINT, API_KEY } from '../../config';
 import { IFavorite, IRecipe } from '../../interfaces';
 import RecipeList from '../../Components/RecipeList';
@@ -10,30 +10,47 @@ import { Link } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 
 const initialMessage = 'Start typing to search through the recipes!';
+const initialResultsLimit = 15;
 
 interface Props {
     favorites: IFavorite[];
     removeFavorite: (id: number) => void;
 }
 
+let cancel: CancelTokenSource | null = null;
+
 function HomePage({ favorites, removeFavorite }: Props) {
     const [searchValue, setSearchValue] = useState<string>('');
     const [recipes, setRecipes] = useState<IRecipe[]>([]);
     const [message, setMessage] = useState<string>(initialMessage);
+    const [resultsLimit, setResultsLimit] = useState<number>(initialResultsLimit);
+    const [totalResults, setTotalResults] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const fetchRecipes = async (query: string) => {
+    const fetchRecipes = async (query: string, limit: number) => {
         try {
-            const recipesRequest = await axios.get(`${API_ENDPOINT}/recipes/complexSearch?apiKey=${API_KEY}&query=${query}`);
+            if (cancel) {
+                cancel.cancel();
+            }
+
+            cancel = axios.CancelToken.source();
+            const recipesRequest = await axios.get(`${API_ENDPOINT}/recipes/complexSearch?apiKey=${API_KEY}&query=${query}&number=${limit}`, { cancelToken: cancel.token });
+            
             if (recipesRequest.data && recipesRequest.data.results && recipesRequest.data.results.length) {
                 setRecipes(recipesRequest.data.results);
+                setTotalResults(recipesRequest.data.totalResults);
                 setMessage('');
             } else {
                 setRecipes([]);
+                setTotalResults(0);
                 setMessage('No recipes found.')
             }
         } catch(e) {
-            setMessage('Failed to fetch search results.')
+            if (!axios.isCancel(e)) {
+                setRecipes([]);
+                setTotalResults(0);
+                setMessage('Failed to fetch search results.')
+            }
         }
 
         setIsLoading(false);
@@ -44,12 +61,22 @@ function HomePage({ favorites, removeFavorite }: Props) {
 
         if (value) {
             setIsLoading(true);
-            fetchRecipes(value);
+            setResultsLimit(initialResultsLimit);
+            fetchRecipes(value, initialResultsLimit);
         } else {
             setRecipes([]);
             setMessage(initialMessage);
         }
     }
+
+    const onLoadMore = () => {
+        const newResultsLimit = resultsLimit + 15;
+        setResultsLimit(newResultsLimit);
+        setIsLoading(true);
+        fetchRecipes(searchValue, newResultsLimit);
+    }
+
+    const showLoadMore = resultsLimit < totalResults;
 
     return (
         <div className="home-page">
@@ -66,11 +93,18 @@ function HomePage({ favorites, removeFavorite }: Props) {
             {message ?
                 <p className="info-message">{message}</p>
             :
-                <RecipeList
-                    favorites={favorites}
-                    recipes={recipes}
-                    removeFavorite={removeFavorite}
-                />
+                <>
+                    <RecipeList
+                        favorites={favorites}
+                        recipes={recipes}
+                        removeFavorite={removeFavorite}
+                    />
+                    {showLoadMore && (
+                        <div className="load-more">
+                            <button onClick={onLoadMore}>LOAD MORE</button>
+                        </div>
+                    )}
+                </>
             }
             {isLoading && <Loading/>}
         </div> 

@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 interface Props {
-    data: IFavorite;
+    id: number;
+    name: string;
+    preparationTime: number;
     removeFavorite: (id: number) => void;
     isFavorite?: boolean;
 }
 
-function FavoriteItem({ data, isFavorite = true, removeFavorite }: Props) {
-    const { id, name, preparationTime } = data;
-
+function FavoriteItem({ id, name, preparationTime, isFavorite = true, removeFavorite }: Props) {
     const onFavoriteClick = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
         event.preventDefault();
         removeFavorite(id);

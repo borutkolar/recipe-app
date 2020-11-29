@@ -22,4 +22,36 @@
     .search-input {
         margin: 1.5rem 0 3rem;
     }
+
+    .load-more {
+        margin-top: 4rem;
+        text-align: center;
+        
+        button {
+            width: 22rem;
+            padding: 1rem 0;
+            border: 2px solid green;
+            border-radius: 5px;
+            outline: none;
+            background: none;
+            color: green;
+            font-weight: 700;
+            font-size: 2rem;
+            cursor: pointer;
+
+            &:hover {
+                background: green;
+                color: white;
+
+                @include tablet {
+                    background: none;
+                    color: green;
+                }
+            }
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+    }
 }

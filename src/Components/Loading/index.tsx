@@ -3,7 +3,12 @@ import './style.scss';
 
 function Loading() {
     return (
-        <div className="loading-overlay"/>
+        <div className="loading-overlay">
+            <div className="lds-ripple">
+                <div/>
+                <div/>
+            </div>
+        </div>
     );
 }
 

@@ -15,7 +15,9 @@ function FavoritesList({ data, removeFavorite }: Props) {
             {data.map((item, index) => (
                 <FavoriteItem
                     key={index}
-                    data={item}
+                    id={item.id}
+                    name={item.name}
+                    preparationTime={item.preparationTime}
                     removeFavorite={removeFavorite}
                 />
             ))}

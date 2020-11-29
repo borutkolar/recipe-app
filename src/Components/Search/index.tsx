@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaSearch } from 'react-icons/fa';
 import './style.scss';
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 function Search({ value, onChange }: Props) {
     return (
         <div className="search-input with-box-shadow">
+            <FaSearch/>
             <input
                 type="text"
                 placeholder="Search..."

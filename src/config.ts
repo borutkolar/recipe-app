@@ -1,2 +1,2 @@
-export const API_KEY = 'd53de1cce24e45f98020df0054ff7027';
+export const API_KEY = '518e1bc3082848229535b44eb2b8768c';
 export const API_ENDPOINT = 'https://api.spoonacular.com';

@@ -15,3 +15,9 @@ export interface IFavorite {
     name: string;
     preparationTime: number;
 }
+
+export interface ISimilarRecipe {
+    id: number;
+    readyInMinutes: number;
+    title: string;
+}

@@ -16,7 +16,7 @@ function FavoritesPage({ data, removeFavorite }: Props) {
                     removeFavorite={removeFavorite}
                 />
             :
-                <p className="info-message">No recipe found in your favorites list.</p>
+                <p className="info-message">No recipe found on your favorites list.</p>
             }
         </div>
     );

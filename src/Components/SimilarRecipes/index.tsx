@@ -1,10 +1,10 @@
 import React from 'react';
-import { IFavorite } from '../../interfaces';
+import { IFavorite, ISimilarRecipe } from '../../interfaces';
 import FavoriteItem from '../FavoriteItem';
 import './style.scss';
 
 interface Props {
-    data: IFavorite[];
+    data: ISimilarRecipe[];
     favorites: IFavorite[];
     message: string;
     removeFavorite: (id: number) => void;
@@ -26,7 +26,9 @@ function SimilarRecipes({ data, favorites, message, removeFavorite }: Props) {
                             return (
                                 <FavoriteItem
                                     key={index}
-                                    data={item}
+                                    id={item.id}
+                                    name={item.title}
+                                    preparationTime={item.readyInMinutes}
                                     isFavorite={isFavorite}
                                     removeFavorite={removeFavorite}
                                 />
