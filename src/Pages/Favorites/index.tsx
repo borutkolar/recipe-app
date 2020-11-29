@@ -9,7 +9,7 @@ interface Props {
 
 function FavoritesPage({ data, removeFavorite }: Props) {
     return (
-        <div className="favorites-page">
+        <div data-testid="favorites-page" className="favorites-page">
             <FavoritesList
                 data={data}
                 emptyListMessage="No recipe found on your favorites list."

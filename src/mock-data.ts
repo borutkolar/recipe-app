@@ -1,4 +1,4 @@
-import { IFavorite, IRecipe, ISimilarRecipe } from "./interfaces";
+import { IFavorite, IRecipe, IRecipeInformation, ISimilarRecipe } from "./interfaces";
 
 const mockFavorites: IFavorite[] = [
     {
@@ -26,6 +26,15 @@ const mockRecipes: IRecipe[] = [
     },
 ]
 
+const mockRecipeInformation: IRecipeInformation = {
+    id: 1,
+    image: 'https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&w=3634&h=1903&url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5445825.jpg',
+    instructions: 'Bring a large pot of lightly salted water to a boil. Cook elbow macaroni in the boiling water, stirring occasionally until cooked through but firm to the bite, 8 minutes. Drain.',
+    readyInMinutes: 25,
+    servings: 2,
+    title: 'Pasta with cheese'
+}
+
 const mockSimilarRecipes: ISimilarRecipe[] = [
     {
         id: 3,
@@ -44,4 +53,4 @@ const mockSimilarRecipes: ISimilarRecipe[] = [
     }
 ];
 
-export { mockFavorites, mockRecipes, mockSimilarRecipes }
+export { mockFavorites, mockRecipes, mockRecipeInformation, mockSimilarRecipes }

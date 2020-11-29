@@ -28,9 +28,9 @@ function RecipePage({ favorites, match, addFavorite, removeFavorite }: Props) {
         setRecipeInformationLoading(true);
         
         try {
-            const recipeInformationRequest = await axios.get(`${API_ENDPOINT}/recipes/${match.params.id}/information?apiKey=${API_KEY}`);
-            if (recipeInformationRequest.data && recipeInformationRequest.data.id) {
-                setRecipeInformation(recipeInformationRequest.data)
+            const { data } = await axios.get(`${API_ENDPOINT}/recipes/${match.params.id}/information?apiKey=${API_KEY}`);
+            if (data && data.id) {
+                setRecipeInformation(data)
             }
         } catch(e) {
             setRecipeInformationMessage('Failed to fetch recipe information.')
@@ -43,9 +43,9 @@ function RecipePage({ favorites, match, addFavorite, removeFavorite }: Props) {
         setSimilarRecipesLoading(true);
 
         try {
-            const similarRecipesRequest = await axios.get(`${API_ENDPOINT}/recipes/${match.params.id}/similar?apiKey=${API_KEY}`);
-            if (similarRecipesRequest.data && similarRecipesRequest.data.length) {
-                setSimilarRecipes(similarRecipesRequest.data);
+            const { data } = await axios.get(`${API_ENDPOINT}/recipes/${match.params.id}/similar?apiKey=${API_KEY}`);
+            if (data && data.length) {
+                setSimilarRecipes(data);
                 setSimilarRecipesMessage('');
             } else {
                 setSimilarRecipes([]);

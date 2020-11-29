@@ -34,11 +34,11 @@ function HomePage({ favorites, removeFavorite }: Props) {
             }
 
             cancel = axios.CancelToken.source();
-            const recipesRequest = await axios.get(`${API_ENDPOINT}/recipes/complexSearch?apiKey=${API_KEY}&query=${query}&number=${limit}`, { cancelToken: cancel.token });
+            const { data } = await axios.get(`${API_ENDPOINT}/recipes/complexSearch?apiKey=${API_KEY}&query=${query}&number=${limit}`, { cancelToken: cancel.token });
             
-            if (recipesRequest.data && recipesRequest.data.results && recipesRequest.data.results.length) {
-                setRecipes(recipesRequest.data.results);
-                setTotalResults(recipesRequest.data.totalResults);
+            if (data && data.results && data.results.length) {
+                setRecipes(data.results);
+                setTotalResults(data.totalResults);
                 setMessage('');
             } else {
                 setRecipes([]);
