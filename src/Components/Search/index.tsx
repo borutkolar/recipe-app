@@ -12,6 +12,7 @@ function Search({ value, onChange }: Props) {
         <div className="search-input with-box-shadow">
             <FaSearch/>
             <input
+                data-testid="search"
                 type="text"
                 placeholder="Search..."
                 value={value}

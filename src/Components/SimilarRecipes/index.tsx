@@ -14,7 +14,7 @@ function SimilarRecipes({ data, favorites, message, removeFavorite }: Props) {
     const infoMessage = message || 'No similar recipes found.'
 
     return (
-        <div className="similar-recipes">
+        <div data-testid="similar-recipes" className="similar-recipes">
             {data.length ?
                 <div className="similar-recipes-container">
                     <h3>Similar recipes</h3>

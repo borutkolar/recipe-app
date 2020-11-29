@@ -20,7 +20,11 @@ function FavoriteItem({ id, name, preparationTime, isFavorite = true, removeFavo
     }
 
     return (
-        <Link to={`/recipe/${id}`} className="favorite-item with-box-shadow with-hover-scale">
+        <Link
+            data-testid="favorite-item"
+            to={`/recipe/${id}`}
+            className="favorite-item with-box-shadow with-hover-scale"
+        >
             <div className="recipe-data">
                 <p>{name}</p>
                 <div className="preparation-time">
@@ -29,7 +33,7 @@ function FavoriteItem({ id, name, preparationTime, isFavorite = true, removeFavo
                 </div>
             </div>
             {isFavorite &&
-                <AiFillStar className="favorite-icon" onClick={onFavoriteClick}/>
+                <AiFillStar data-testid="favorite-icon" className="favorite-icon" onClick={onFavoriteClick}/>
             }
         </Link>
     );

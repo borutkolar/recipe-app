@@ -10,7 +10,7 @@ interface Props {
 
 function FavoritesList({ data, removeFavorite }: Props) {
     return (
-        <div className="favorites-list">
+        <div data-testid="favorites-list" className="favorites-list">
             <h1>Your favorite recipes</h1>
             {data.map((item, index) => (
                 <FavoriteItem

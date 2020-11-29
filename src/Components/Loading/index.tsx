@@ -3,7 +3,7 @@ import './style.scss';
 
 function Loading() {
     return (
-        <div className="loading-overlay">
+        <div data-testid="loading" className="loading-overlay">
             <div className="lds-ripple">
                 <div/>
                 <div/>
