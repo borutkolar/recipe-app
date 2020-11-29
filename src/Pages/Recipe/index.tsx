@@ -82,11 +82,16 @@ function RecipePage({ favorites, match, addFavorite, removeFavorite }: Props) {
     );
 
     return (
-        <div className="recipe-page">
+        <div className="recipe-page" data-testid="recipe-page">
             {recipeInformation ? 
                 <div className="recipe-information-content">
                     <div className="main-wrapper">
-                        <img src={recipeInformation.image} className="recipe-img" alt={recipeInformation.title}/>
+                        <img
+                            src={recipeInformation.image}
+                            className="recipe-img"
+                            alt={recipeInformation.title}
+                            data-testid="recipe-img"
+                        />
                         <h1>{recipeInformation.title}</h1>
                         {favoriteElement}
                         <div className="icon-text-row">

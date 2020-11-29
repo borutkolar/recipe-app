@@ -24,7 +24,7 @@ function RecipeItem({ data, isFavorite, removeFavorite }: Props) {
             className="recipe-item with-box-shadow with-hover-scale"
             data-testid="recipe-item"
         >
-            <img className="recipe-img" src={image} alt={title}/>
+            <img data-testid="recipe-list-img" className="recipe-img" src={image} alt={title}/>
             <div className="recipe-title">
                 <span>{title}</span>
                 {isFavorite &&

@@ -39,9 +39,10 @@ it("renders without crashing", () => {
 });
 
 it("renders correct data", () => {
-    const { getByText } = setup();
-    const { title } = mockRecipe;
+    const { getByText, queryByTestId } = setup();
+    const { image, title } = mockRecipe;
     expect(getByText(title)).toBeInTheDocument();
+    expect(queryByTestId('recipe-list-img')).toHaveAttribute('src', image);
 });
 
 it("renders favorite icon", () => {

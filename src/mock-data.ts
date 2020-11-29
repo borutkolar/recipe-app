@@ -16,12 +16,12 @@ const mockFavorites: IFavorite[] = [
 const mockRecipes: IRecipe[] = [
     {
         id: 1,
-        image: '',
+        image: 'https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&w=3634&h=1903&url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5445825.jpg',
         title: 'Pasta with cheese'
     },
     {
         id: 2,
-        image: '',
+        image: 'https://www.skinnytaste.com/wp-content/uploads/2011/07/Easiest-Pasta-and-Broccoli-Recipe.jpg',
         title: 'Pasta with broccoli'
     },
 ]
