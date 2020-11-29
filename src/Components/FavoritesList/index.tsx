@@ -5,22 +5,25 @@ import './style.scss';
 
 interface Props {
     data: IFavorite[];
+    emptyListMessage: string;
     removeFavorite: (id: number) => void;
 }
 
-function FavoritesList({ data, removeFavorite }: Props) {
+function FavoritesList({ data, emptyListMessage, removeFavorite }: Props) {
     return (
         <div data-testid="favorites-list" className="favorites-list">
             <h1>Your favorite recipes</h1>
-            {data.map((item, index) => (
-                <FavoriteItem
-                    key={index}
-                    id={item.id}
-                    name={item.name}
-                    preparationTime={item.preparationTime}
-                    removeFavorite={removeFavorite}
-                />
-            ))}
+            {data.length ?
+                data.map((item, index) => (
+                    <FavoriteItem
+                        key={index}
+                        removeFavorite={removeFavorite}
+                        {...item}
+                    />
+                ))
+            :
+                <p className="info-message">{emptyListMessage}</p>
+            }
         </div>
     );
 }

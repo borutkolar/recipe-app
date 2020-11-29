@@ -19,12 +19,16 @@ function RecipeItem({ data, isFavorite, removeFavorite }: Props) {
     }
 
     return (
-        <Link to={`/recipe/${id}`} className="recipe-item with-box-shadow with-hover-scale">
+        <Link
+            to={`/recipe/${id}`}
+            className="recipe-item with-box-shadow with-hover-scale"
+            data-testid="recipe-item"
+        >
             <img className="recipe-img" src={image} alt={title}/>
             <div className="recipe-title">
                 <span>{title}</span>
                 {isFavorite &&
-                    <AiFillStar onClick={onFavoriteClick}/>
+                    <AiFillStar data-testid="recipe-favorite" onClick={onFavoriteClick}/>
                 }
             </div>
         </Link>

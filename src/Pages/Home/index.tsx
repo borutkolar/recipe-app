@@ -90,22 +90,17 @@ function HomePage({ favorites, removeFavorite }: Props) {
                 value={searchValue}
                 onChange={onSearchChange}
             />
-            {message ?
-                <p className="info-message">{message}</p>
-            :
-                <>
-                    <RecipeList
-                        favorites={favorites}
-                        recipes={recipes}
-                        removeFavorite={removeFavorite}
-                    />
-                    {showLoadMore && (
-                        <div className="load-more">
-                            <button onClick={onLoadMore}>LOAD MORE</button>
-                        </div>
-                    )}
-                </>
-            }
+            <RecipeList
+                favorites={favorites}
+                message={message}
+                recipes={recipes}
+                removeFavorite={removeFavorite}
+            />
+            {showLoadMore && (
+                <div className="load-more">
+                    <button onClick={onLoadMore}>LOAD MORE</button>
+                </div>
+            )}
             {isLoading && <Loading/>}
         </div> 
     );

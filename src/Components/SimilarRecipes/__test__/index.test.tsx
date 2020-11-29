@@ -37,43 +37,31 @@ it("renders without crashing", () => {
     ReactDOM.render(component, div);
 });
 
+it("renders title", () => {    
+    const { getByText } = setup();
+    expect(getByText(/similar recipes/i)).toBeInTheDocument();
+})
+
 it("renders list of data", () => {
     const { getAllByTestId } = setup();
     const listItems = getAllByTestId('favorite-item');
     expect(listItems).toHaveLength(mockSimilarRecipes.length);
-    // listItems.forEach((item, index) => {
-    //     const { getByText } = within(item);
-    //     const { readyInMinutes, title } = mockSimilarRecipes[index];
-    //     expect(getByText(title)).toBeInTheDocument();
-    //     expect(getByText(readyInMinutes.toString(), { exact: false })).toBeInTheDocument();
-    // })
-});
+})
 
-// it("renders favorite icon if item is favorite", () => {
-//     const { getAllByTestId } = setup();
-//     const listItems = getAllByTestId('favorite-item');
-//     expect(listItems).toHaveLength(mockSimilarRecipes.length);
-//     listItems.forEach((item, index) => {
-//         const { queryByTestId } = within(item);
-//         const { id } = mockSimilarRecipes[index];
-//         const isFavorite = mockFavorites.find(m => m.id === id);
-//         isFavorite ? expect(queryByTestId('favorite-icon')).toBeTruthy() : expect(queryByTestId('favorite-icon')).toBeFalsy();
-//     })
-// });
-
-it("renders message if no data", () => {
+it("renders correct if no data", () => {
+    const message = 'Failed to fetch recipe information';
     const history = createMemoryHistory();
     const component = (
         <Router history={history}>
             <SimilarRecipes
                 data={[]}
                 favorites={mockFavorites}
-                message=""
+                message={message}
                 removeFavorite={() => void 0}
             />
         </Router>
     );
     
     const { getByText } = render(component);
-    expect(getByText(/no similar recipes/i)).toBeInTheDocument();
-})
+    expect(getByText(message)).toBeInTheDocument();
+});

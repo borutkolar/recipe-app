@@ -46,6 +46,10 @@ function RecipePage({ favorites, match, addFavorite, removeFavorite }: Props) {
             const similarRecipesRequest = await axios.get(`${API_ENDPOINT}/recipes/${match.params.id}/similar?apiKey=${API_KEY}`);
             if (similarRecipesRequest.data && similarRecipesRequest.data.length) {
                 setSimilarRecipes(similarRecipesRequest.data);
+                setSimilarRecipesMessage('');
+            } else {
+                setSimilarRecipes([]);
+                setSimilarRecipesMessage('No similar recipes found.');
             }
         } catch(e) {
             setSimilarRecipesMessage('Failed to fetch recipe information.')

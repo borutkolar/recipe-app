@@ -13,6 +13,7 @@ const setup = () => {
         <Router history={history}>
             <FavoritesList
                 data={mockFavorites}
+                emptyListMessage=""
                 removeFavorite={() => void 0}
             />
         </Router>
@@ -45,3 +46,20 @@ it("renders list of data", () => {
     const listItems = getAllByTestId('favorite-item');
     expect(listItems).toHaveLength(mockFavorites.length);
 });
+
+it("renders message if no data", () => {
+    const message = 'No recipe found on your favorites list.';
+    const history = createMemoryHistory();
+    const component = (
+        <Router history={history}>
+            <FavoritesList
+                data={[]}
+                emptyListMessage={message}
+                removeFavorite={() => void 0}
+            />
+        </Router>
+    );
+    
+    const { getByText } = render(component);
+    expect(getByText(message)).toBeInTheDocument();
+})

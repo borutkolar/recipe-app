@@ -11,8 +11,6 @@ interface Props {
 }
 
 function SimilarRecipes({ data, favorites, message, removeFavorite }: Props) {
-    const infoMessage = message || 'No similar recipes found.'
-
     return (
         <div data-testid="similar-recipes" className="similar-recipes">
             {data.length ?
@@ -37,7 +35,7 @@ function SimilarRecipes({ data, favorites, message, removeFavorite }: Props) {
                     </div>
                 </div>
             :
-                <p className="info-message">{infoMessage}</p>
+                <p className="info-message">{message}</p>
             }
         </div>
     );

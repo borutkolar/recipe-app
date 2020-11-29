@@ -10,14 +10,11 @@ interface Props {
 function FavoritesPage({ data, removeFavorite }: Props) {
     return (
         <div className="favorites-page">
-            {data.length ?
-                <FavoritesList
-                    data={data}
-                    removeFavorite={removeFavorite}
-                />
-            :
-                <p className="info-message">No recipe found on your favorites list.</p>
-            }
+            <FavoritesList
+                data={data}
+                emptyListMessage="No recipe found on your favorites list."
+                removeFavorite={removeFavorite}
+            />
         </div>
     );
 }
