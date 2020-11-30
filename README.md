@@ -46,6 +46,6 @@ There are several components defined and used on different places across the web
 
 ## Testing
 
-Tests were written using `jest` and `react-testing-library`.
+Tests are written using `jest` and `react-testing-library`.
 
 All of the pages and components have a sub-directory named *\__test\__* where main test file for page/component is located. There is also an additional test file `(App.test.tsx)` in *src* directory which belongs to main app file (`App.tsx`).
