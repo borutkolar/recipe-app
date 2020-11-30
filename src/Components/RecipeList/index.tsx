@@ -14,19 +14,21 @@ function RecipeList({ favorites, message, recipes, removeFavorite }: Props) {
     return (
         <div data-testid="recipe-list" className="recipe-list">
             {recipes.length ?
-                recipes.map((item, index) => {
-                    const favoriteFound = favorites.find(f => f.id === item.id);
-    
-                    return (
-                        <RecipeItem
-                            key={index}
-                            data={item}
-                            isFavorite={Boolean(favoriteFound)}
-                            removeFavorite={removeFavorite}
-                        />
-                    )
-                })
-            :
+                <div className="grid-wrapper">
+                    {recipes.map((item, index) => {
+                        const favoriteFound = favorites.find(f => f.id === item.id);
+
+                        return (
+                            <RecipeItem
+                                key={index}
+                                data={item}
+                                isFavorite={Boolean(favoriteFound)}
+                                removeFavorite={removeFavorite}
+                            />
+                        )
+                    })}
+                </div>
+                :
                 <p className="info-message">{message}</p>
             }
         </div>

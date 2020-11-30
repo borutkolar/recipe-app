@@ -1,7 +1,6 @@
 # Recipe app
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
-Stylesheet language Sass is used for implementing the styles (included `node-sass` library).\
 The app is a simple personal recipe book web application where you can search through huge amount of recipes.
 
 ## Available Scripts
@@ -43,6 +42,13 @@ There are several components defined and used on different places across the web
 - `RecipeList`: displays the list where every item is `RecipeItem` component or message if data array is empty
 - `Search`: contains input whose value and onChange function are sent through props
 - `SimilarRecipes`: displays similar recipes sent through props or message if there is no similar recipe
+
+## Styling
+Stylesheet language Sass is used for implementing the styles (included `node-sass` library).\
+Styles are implemented based on three main breakpoints:
+- desktop - bigger than 1024px
+- tablet - between 768px and 1024px
+- mobile - smaller than 768px
 
 ## Testing
 
