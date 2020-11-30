@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FavoritesList from '..';
-import { render, cleanup, within } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { mockFavorites } from '../../../mock-data';

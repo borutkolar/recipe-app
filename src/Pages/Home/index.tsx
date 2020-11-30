@@ -79,8 +79,8 @@ function HomePage({ favorites, removeFavorite }: Props) {
     const showLoadMore = resultsLimit < totalResults;
 
     return (
-        <div className="home-page">
-            <Link to="/favorites" className="favorites-title">
+        <div className="home-page" data-testid="home-page">
+            <Link to="/favorites" className="favorites-title" data-testid="favorites-title">
                 <div>
                     <AiFillStar/>
                     <span>Favorites</span>

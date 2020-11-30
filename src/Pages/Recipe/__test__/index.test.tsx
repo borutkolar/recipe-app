@@ -1,9 +1,9 @@
 import React from 'react';
 import RecipePage from '..';
-import { mockFavorites, mockRecipeInformation, mockRecipes } from "../../../mock-data";
+import { mockFavorites, mockRecipeInformation } from "../../../mock-data";
 import { createMemoryHistory } from 'history';
 import { Router } from "react-router-dom";
-import { cleanup, render, waitFor } from "@testing-library/react";
+import { cleanup, render, waitFor, within } from "@testing-library/react";
 import '@testing-library/jest-dom';
 
 import axios from 'axios';
@@ -33,20 +33,33 @@ afterEach(cleanup);
 
 test('renders recipe information', async () => {
     mockedAxios.get.mockResolvedValue({ data: mockRecipeInformation });
-    const { getByTestId, getByText } = setup();
-    
-    await waitFor(() => expect(getByTestId('recipe-page')).toBeInTheDocument());    
-    await waitFor(() => expect(getByText(mockRecipeInformation.title)).toBeTruthy());
-    await waitFor(() => expect(getByTestId('recipe-img')).toHaveAttribute('src', mockRecipeInformation.image));
-    await waitFor(() => expect(getByText(mockRecipeInformation.instructions)).toBeTruthy());
-    await waitFor(() => expect(getByText(mockRecipeInformation.readyInMinutes.toString(), { exact: false })).toBeTruthy());
-    await waitFor(() => expect(getByText(`${mockRecipeInformation.servings} (servings)`)).toBeTruthy());
+    const { getByTestId } = setup();
+
+    expect(getByTestId('loading')).toBeInTheDocument();
+
+    await waitFor(() => {
+        const page = getByTestId('recipe-page');
+        expect(page).toBeInTheDocument();
+        const { getByText, getByTestId: getByTestIdPage } = within(page);
+        expect(getByText(mockRecipeInformation.title)).toBeTruthy();
+        expect(getByTestIdPage('recipe-img')).toHaveAttribute('src', mockRecipeInformation.image);
+        expect(getByText(mockRecipeInformation.instructions)).toBeTruthy();
+        expect(getByText(mockRecipeInformation.readyInMinutes.toString(), { exact: false })).toBeTruthy();
+        expect(getByText(`${mockRecipeInformation.servings} (servings)`)).toBeTruthy();
+        expect(getByTestIdPage('similar-recipes')).toBeInTheDocument();
+    });
 });
 
 test('renders error message', async () => {
     mockedAxios.get.mockRejectedValue({});
-    const { getByTestId, getByText } = setup();
+    const { getByTestId } = setup();
+
+    expect(getByTestId('loading')).toBeInTheDocument();
     
-    await waitFor(() => expect(getByTestId('recipe-page')).toBeInTheDocument());    
-    await waitFor(() => expect(getByText(/failed to fetch/i)).toBeTruthy());
+    await waitFor(() => {
+        const page = getByTestId('recipe-page');
+        expect(page).toBeInTheDocument();
+        const { getByText } = within(page);
+        expect(getByText(/failed to fetch/i)).toBeTruthy();
+    });
 });
