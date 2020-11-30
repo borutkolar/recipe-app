@@ -1,5 +1,4 @@
 import React from 'react';
-import { IFavorite } from '../../interfaces';
 import { CgTimer } from 'react-icons/cg'
 import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
