@@ -1,7 +1,8 @@
 # Recipe app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Stylesheet language Sass is used for implementing the styles (included `node-sass` library).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
+Stylesheet language Sass is used for implementing the styles (included `node-sass` library).\
+The app is a simple personal recipe book web application where you can search through huge amount of recipes.
 
 ## Available Scripts
 
@@ -14,30 +15,37 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `yarn test`
 
-Use in order to launch the test runner in the interactive watch mode.\
+Use in order to launch the test runner in the interactive watch mode.
 
 ### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## API
+For fetching different information about the recipes the app is using [Spoonacular API](https://spoonacular.com/food-api). Every request includes a token which was generated upon registration on API official page. API calls are executed using `axios` library.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Pages
+Website consists of three main pages, they are located in *src/Pages* directory. Each of the pages has its own directory and is located on its own URL:
 
-### `yarn eject`
+- **/** → home page where autocomplete recipe search is located - search through the recipes by typing in search input.
+- **/recipe/`${RECIPE_ID}`** → recipe information page where recipe details are displayed (name, image, instructions, preparation time, number of servings). It also includes list of similar recipes.
+- **/favorites** → page where user’s favorite recipes are displayed in a list. Data is stored in local storage.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+For navigating between the pages package `react-router-dom` is used.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Components
+There are several components defined and used on different places across the website. They are located in *src/Components* directory, where each of them has its own directory:
+- `FavoriteItem`: displaying different properties of favorite recipe which are received through props
+- `FavoritesList`: displays the list where every item is `FavoriteItem` component or message if data array is empty
+- `Loading`: overlay shown when data from the API call is being loaded
+- `RecipeItem`: displaying different properties of a recipe which are received through props
+- `RecipeList`: displays the list where every item is `RecipeItem` component or message if data array is empty
+- `Search`: contains input whose value and onChange function are sent through props
+- `SimilarRecipes`: displays similar recipes sent through props or message if there is no similar recipe
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Testing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Tests were written using `jest` and `react-testing-library`.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+All of the pages and components have a sub-directory named *__test__* where main test file for page/component is located. There is also an additional test file `(App.test.tsx)` in *src* directory which belongs to main app file (`App.tsx`).
